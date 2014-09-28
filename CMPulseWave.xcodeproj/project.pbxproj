@@ -17,6 +17,7 @@
 		4C55745119D6CD5B00B2B307 /* libCorePlot-CocoaTouch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C55744E19D6CD4B00B2B307 /* libCorePlot-CocoaTouch.a */; };
 		4C55745319D6CDE100B2B307 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C55745219D6CDE100B2B307 /* Accelerate.framework */; };
 		4CD1307219D82839003445EA /* ChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD1307119D82839003445EA /* ChartViewController.m */; };
+		4CD1308519D85005003445EA /* ViewChanges.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD1308419D85005003445EA /* ViewChanges.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,8 @@
 		4C55745219D6CDE100B2B307 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		4CD1307119D82839003445EA /* ChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChartViewController.m; sourceTree = "<group>"; };
 		4CD1307519D82854003445EA /* ChartViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChartViewController.h; sourceTree = "<group>"; };
+		4CD1308319D85005003445EA /* ViewChanges.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewChanges.h; sourceTree = "<group>"; };
+		4CD1308419D85005003445EA /* ViewChanges.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewChanges.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +114,8 @@
 				4C55742919D6CCC300B2B307 /* ViewController.m */,
 				4CD1307119D82839003445EA /* ChartViewController.m */,
 				4CD1307519D82854003445EA /* ChartViewController.h */,
+				4CD1308319D85005003445EA /* ViewChanges.h */,
+				4CD1308419D85005003445EA /* ViewChanges.m */,
 				4C55742B19D6CCC300B2B307 /* Main.storyboard */,
 				4C55742E19D6CCC300B2B307 /* Images.xcassets */,
 				4C55743019D6CCC300B2B307 /* LaunchScreen.xib */,
@@ -273,6 +278,7 @@
 			files = (
 				4C55742A19D6CCC300B2B307 /* ViewController.m in Sources */,
 				4CD1307219D82839003445EA /* ChartViewController.m in Sources */,
+				4CD1308519D85005003445EA /* ViewChanges.m in Sources */,
 				4C55742719D6CCC300B2B307 /* AppDelegate.m in Sources */,
 				4C55742419D6CCC300B2B307 /* main.m in Sources */,
 			);
