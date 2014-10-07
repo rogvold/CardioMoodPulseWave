@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4C51569C19DAEC7A0076B6D3 /* CMBluetoothViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C51569B19DAEC7A0076B6D3 /* CMBluetoothViewController.m */; };
+		4C51569C19DAEC7A0076B6D3 /* CMBluetoothLogic.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C51569B19DAEC7A0076B6D3 /* CMBluetoothLogic.m */; };
 		4C51569E19DAF14F0076B6D3 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C51569D19DAF14F0076B6D3 /* CoreBluetooth.framework */; };
 		4C5156A019DAF1580076B6D3 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C51569F19DAF1580076B6D3 /* QuartzCore.framework */; };
 		4C55742419D6CCC300B2B307 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C55742319D6CCC300B2B307 /* main.m */; };
@@ -19,6 +19,7 @@
 		4C55743E19D6CCC300B2B307 /* CMPulseWaveTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C55743D19D6CCC300B2B307 /* CMPulseWaveTests.m */; };
 		4C55745119D6CD5B00B2B307 /* libCorePlot-CocoaTouch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C55744E19D6CD4B00B2B307 /* libCorePlot-CocoaTouch.a */; };
 		4C55745319D6CDE100B2B307 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C55745219D6CDE100B2B307 /* Accelerate.framework */; };
+		4C6E32C019E3F117006BD032 /* ScrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6E32BF19E3F117006BD032 /* ScrollViewController.m */; };
 		4CD1307219D82839003445EA /* ChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD1307119D82839003445EA /* ChartViewController.m */; };
 		4CD1308519D85005003445EA /* ViewChanges.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD1308419D85005003445EA /* ViewChanges.m */; };
 /* End PBXBuildFile section */
@@ -48,8 +49,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		4C51569A19DAEC7A0076B6D3 /* CMBluetoothViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMBluetoothViewController.h; sourceTree = "<group>"; };
-		4C51569B19DAEC7A0076B6D3 /* CMBluetoothViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMBluetoothViewController.m; sourceTree = "<group>"; };
+		4C51569A19DAEC7A0076B6D3 /* CMBluetoothLogic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMBluetoothLogic.h; sourceTree = "<group>"; };
+		4C51569B19DAEC7A0076B6D3 /* CMBluetoothLogic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMBluetoothLogic.m; sourceTree = "<group>"; };
 		4C51569D19DAF14F0076B6D3 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		4C51569F19DAF1580076B6D3 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		4C55741E19D6CCC300B2B307 /* CMPulseWave.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CMPulseWave.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -67,6 +68,8 @@
 		4C55743D19D6CCC300B2B307 /* CMPulseWaveTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CMPulseWaveTests.m; sourceTree = "<group>"; };
 		4C55744719D6CD4A00B2B307 /* CorePlot-CocoaTouch.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "CorePlot-CocoaTouch.xcodeproj"; path = "core-plot/framework/CorePlot-CocoaTouch.xcodeproj"; sourceTree = SOURCE_ROOT; };
 		4C55745219D6CDE100B2B307 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		4C6E32BE19E3F117006BD032 /* ScrollViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScrollViewController.h; path = ../ScrollViewController.h; sourceTree = "<group>"; };
+		4C6E32BF19E3F117006BD032 /* ScrollViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ScrollViewController.m; path = ../ScrollViewController.m; sourceTree = "<group>"; };
 		4CD1307119D82839003445EA /* ChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChartViewController.m; sourceTree = "<group>"; };
 		4CD1307519D82854003445EA /* ChartViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChartViewController.h; sourceTree = "<group>"; };
 		4CD1308319D85005003445EA /* ViewChanges.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewChanges.h; sourceTree = "<group>"; };
@@ -121,14 +124,16 @@
 			children = (
 				4C55742519D6CCC300B2B307 /* AppDelegate.h */,
 				4C55742619D6CCC300B2B307 /* AppDelegate.m */,
+				4C6E32BE19E3F117006BD032 /* ScrollViewController.h */,
+				4C6E32BF19E3F117006BD032 /* ScrollViewController.m */,
 				4C55742819D6CCC300B2B307 /* ViewController.h */,
 				4C55742919D6CCC300B2B307 /* ViewController.m */,
 				4CD1307119D82839003445EA /* ChartViewController.m */,
 				4CD1307519D82854003445EA /* ChartViewController.h */,
 				4CD1308319D85005003445EA /* ViewChanges.h */,
 				4CD1308419D85005003445EA /* ViewChanges.m */,
-				4C51569A19DAEC7A0076B6D3 /* CMBluetoothViewController.h */,
-				4C51569B19DAEC7A0076B6D3 /* CMBluetoothViewController.m */,
+				4C51569A19DAEC7A0076B6D3 /* CMBluetoothLogic.h */,
+				4C51569B19DAEC7A0076B6D3 /* CMBluetoothLogic.m */,
 				4C55742B19D6CCC300B2B307 /* Main.storyboard */,
 				4C55742E19D6CCC300B2B307 /* Images.xcassets */,
 				4C55743019D6CCC300B2B307 /* LaunchScreen.xib */,
@@ -289,8 +294,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C6E32C019E3F117006BD032 /* ScrollViewController.m in Sources */,
 				4C55742A19D6CCC300B2B307 /* ViewController.m in Sources */,
-				4C51569C19DAEC7A0076B6D3 /* CMBluetoothViewController.m in Sources */,
+				4C51569C19DAEC7A0076B6D3 /* CMBluetoothLogic.m in Sources */,
 				4CD1307219D82839003445EA /* ChartViewController.m in Sources */,
 				4CD1308519D85005003445EA /* ViewChanges.m in Sources */,
 				4C55742719D6CCC300B2B307 /* AppDelegate.m in Sources */,

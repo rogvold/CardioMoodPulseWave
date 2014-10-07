@@ -8,10 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "CorePlot-CocoaTouch.h"
+#import "CMBluetoothLogic.h"
 
-@interface ChartViewController : UIViewController <CPTPlotDataSource>
+@interface ChartViewController : UIViewController <CPTPlotDataSource, CMRetrievingData>
 
-@property (nonatomic, strong) IBOutlet CPTGraphHostingView *hostView;
++(id)sharedInstance;
+@property (nonatomic, weak) IBOutlet CPTGraphHostingView *hostView;
 
 @end
 

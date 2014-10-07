@@ -10,31 +10,65 @@
 
 @interface ChartViewController()
 
+@property (nonatomic) CPTGraph *graph;
+@property (nonatomic) NSMutableArray *yDataForGraph;
+@property (nonatomic) NSMutableArray *yPoints;
+@property (nonatomic) NSMutableArray *xPoints;
 
 @end
 
 @implementation ChartViewController
 
+-(void) _updateData{
+    [self.yPoints addObject:@([self.yPoints.lastObject floatValue]+0.25)];
+    [self.xPoints addObject:@([self.yPoints.lastObject floatValue]+0.25)];
+    [self.graph reloadData];
+    
+}
+
++(id) sharedInstance{
+    ChartViewController *vc = nil;
+    
+    @synchronized(self){
+        if (vc == nil){
+            vc = [[self alloc] init];
+        }
+    }
+    
+    return vc;
+}
+
 -(void) viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     [self initPlot];
+    [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(_updateData) userInfo:nil repeats:YES];
+    
 }
 -(void)initPlot {
 //    [self configureHost];
     [self configureGraph];
     [self configurePlot];
+    [self.graph reloadData];
 }
 
--(void)configureHost {
+- (void)configureHost {
 //    self.hostView = [(CPTGraphHostingView *) [CPTGraphHostingView alloc] initWithFrame:self.viewWithConstraints.bounds];
 //    [self.viewWithConstraints addSubview:self.hostView];
 }
 
+-(CPTGraph *) graph{
+    
+    if(!_graph){
+        _graph = [[CPTXYGraph alloc] initWithFrame:self.hostView.bounds];
+    }
+    return _graph;
+}
+
 -(void)configureGraph {
     // 1 - Create the graph
-    CPTGraph *graph = [[CPTXYGraph alloc] initWithFrame:self.hostView.bounds];
-    [graph applyTheme:[CPTTheme themeNamed:kCPTPlainWhiteTheme]];
-    self.hostView.hostedGraph = graph;
+//    CPTGraph *graph = [[CPTXYGraph alloc] initWithFrame:self.hostView.bounds];
+    [self.graph applyTheme:[CPTTheme themeNamed:kCPTPlainWhiteTheme]];
+    self.hostView.hostedGraph = self.graph;
     
     // 2 - Set graph title
     //
@@ -72,7 +106,7 @@
     plotSpace.yRange = yRange;
     
     // 4 - Create styles and symbols
-    plot.dataLineStyle = nil;
+//    plot.dataLineStyle = nil;
     CPTPlotSymbol *symbol = [CPTPlotSymbol ellipsePlotSymbol];
     symbol.fill = [CPTFill fillWithColor:color];
     symbol.size = CGSizeMake(6.0f, 6.0f);
@@ -80,16 +114,23 @@
 }
 
 #pragma mark - Points
--(NSArray *) xPoints{
-    return @[@1, @2, @3, @5, @6, @5, @7, @8, @9];
+-(NSMutableArray *) xPoints{
+    if (!_xPoints) {
+        _xPoints =  [[NSMutableArray alloc] initWithObjects:@(0.5), nil];
+    }
+    return _xPoints;
 }
 
--(NSArray *) yPoints{
-    return @[@2, @4, @3, @9, @6, @3, @7, @5, @7];
+-(NSMutableArray *) yPoints{
+    if (!_yPoints) {
+        _yPoints =  [[NSMutableArray alloc] initWithObjects:@(0.5), nil];
+    }
+    return _yPoints;
 }
 
 #pragma mark - CPTPlotDataSource methods
 -(NSUInteger)numberOfRecordsForPlot:(CPTPlot *)plot {
+    
     return [self.xPoints count];
 }
 
