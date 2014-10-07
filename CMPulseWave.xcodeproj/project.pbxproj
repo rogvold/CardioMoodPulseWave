@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4C51569C19DAEC7A0076B6D3 /* CMBluetoothViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C51569B19DAEC7A0076B6D3 /* CMBluetoothViewController.m */; };
+		4C51569E19DAF14F0076B6D3 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C51569D19DAF14F0076B6D3 /* CoreBluetooth.framework */; };
+		4C5156A019DAF1580076B6D3 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C51569F19DAF1580076B6D3 /* QuartzCore.framework */; };
 		4C55742419D6CCC300B2B307 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C55742319D6CCC300B2B307 /* main.m */; };
 		4C55742719D6CCC300B2B307 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C55742619D6CCC300B2B307 /* AppDelegate.m */; };
 		4C55742A19D6CCC300B2B307 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C55742919D6CCC300B2B307 /* ViewController.m */; };
@@ -45,6 +48,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4C51569A19DAEC7A0076B6D3 /* CMBluetoothViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMBluetoothViewController.h; sourceTree = "<group>"; };
+		4C51569B19DAEC7A0076B6D3 /* CMBluetoothViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMBluetoothViewController.m; sourceTree = "<group>"; };
+		4C51569D19DAF14F0076B6D3 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		4C51569F19DAF1580076B6D3 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		4C55741E19D6CCC300B2B307 /* CMPulseWave.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CMPulseWave.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C55742219D6CCC300B2B307 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4C55742319D6CCC300B2B307 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -71,6 +78,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C5156A019DAF1580076B6D3 /* QuartzCore.framework in Frameworks */,
+				4C51569E19DAF14F0076B6D3 /* CoreBluetooth.framework in Frameworks */,
 				4C55745319D6CDE100B2B307 /* Accelerate.framework in Frameworks */,
 				4C55745119D6CD5B00B2B307 /* libCorePlot-CocoaTouch.a in Frameworks */,
 			);
@@ -89,6 +98,8 @@
 		4C55741519D6CCC300B2B307 = {
 			isa = PBXGroup;
 			children = (
+				4C51569F19DAF1580076B6D3 /* QuartzCore.framework */,
+				4C51569D19DAF14F0076B6D3 /* CoreBluetooth.framework */,
 				4C55745219D6CDE100B2B307 /* Accelerate.framework */,
 				4C55742019D6CCC300B2B307 /* CMPulseWave */,
 				4C55743A19D6CCC300B2B307 /* CMPulseWaveTests */,
@@ -116,6 +127,8 @@
 				4CD1307519D82854003445EA /* ChartViewController.h */,
 				4CD1308319D85005003445EA /* ViewChanges.h */,
 				4CD1308419D85005003445EA /* ViewChanges.m */,
+				4C51569A19DAEC7A0076B6D3 /* CMBluetoothViewController.h */,
+				4C51569B19DAEC7A0076B6D3 /* CMBluetoothViewController.m */,
 				4C55742B19D6CCC300B2B307 /* Main.storyboard */,
 				4C55742E19D6CCC300B2B307 /* Images.xcassets */,
 				4C55743019D6CCC300B2B307 /* LaunchScreen.xib */,
@@ -277,6 +290,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4C55742A19D6CCC300B2B307 /* ViewController.m in Sources */,
+				4C51569C19DAEC7A0076B6D3 /* CMBluetoothViewController.m in Sources */,
 				4CD1307219D82839003445EA /* ChartViewController.m in Sources */,
 				4CD1308519D85005003445EA /* ViewChanges.m in Sources */,
 				4C55742719D6CCC300B2B307 /* AppDelegate.m in Sources */,
