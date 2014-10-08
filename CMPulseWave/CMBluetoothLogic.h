@@ -8,11 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@protocol CMRetrievingData <NSObject>
--(void)updateData;
-
-@end
-
 @interface CMBluetoothLogic : NSObject
 
 @property (nonatomic, strong) NSString   *connected;

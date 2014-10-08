@@ -20,6 +20,7 @@
 		4C55745119D6CD5B00B2B307 /* libCorePlot-CocoaTouch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C55744E19D6CD4B00B2B307 /* libCorePlot-CocoaTouch.a */; };
 		4C55745319D6CDE100B2B307 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C55745219D6CDE100B2B307 /* Accelerate.framework */; };
 		4C6E32C019E3F117006BD032 /* ScrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6E32BF19E3F117006BD032 /* ScrollViewController.m */; };
+		4C6E32C719E569AB006BD032 /* BezierVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6E32C619E569AB006BD032 /* BezierVC.m */; };
 		4CD1307219D82839003445EA /* ChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD1307119D82839003445EA /* ChartViewController.m */; };
 		4CD1308519D85005003445EA /* ViewChanges.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD1308419D85005003445EA /* ViewChanges.m */; };
 /* End PBXBuildFile section */
@@ -70,6 +71,8 @@
 		4C55745219D6CDE100B2B307 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		4C6E32BE19E3F117006BD032 /* ScrollViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScrollViewController.h; path = ../ScrollViewController.h; sourceTree = "<group>"; };
 		4C6E32BF19E3F117006BD032 /* ScrollViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ScrollViewController.m; path = ../ScrollViewController.m; sourceTree = "<group>"; };
+		4C6E32C519E569AB006BD032 /* BezierVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BezierVC.h; path = ../BezierVC.h; sourceTree = "<group>"; };
+		4C6E32C619E569AB006BD032 /* BezierVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BezierVC.m; path = ../BezierVC.m; sourceTree = "<group>"; };
 		4CD1307119D82839003445EA /* ChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChartViewController.m; sourceTree = "<group>"; };
 		4CD1307519D82854003445EA /* ChartViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChartViewController.h; sourceTree = "<group>"; };
 		4CD1308319D85005003445EA /* ViewChanges.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewChanges.h; sourceTree = "<group>"; };
@@ -124,6 +127,8 @@
 			children = (
 				4C55742519D6CCC300B2B307 /* AppDelegate.h */,
 				4C55742619D6CCC300B2B307 /* AppDelegate.m */,
+				4C6E32C519E569AB006BD032 /* BezierVC.h */,
+				4C6E32C619E569AB006BD032 /* BezierVC.m */,
 				4C6E32BE19E3F117006BD032 /* ScrollViewController.h */,
 				4C6E32BF19E3F117006BD032 /* ScrollViewController.m */,
 				4C55742819D6CCC300B2B307 /* ViewController.h */,
@@ -301,6 +306,7 @@
 				4CD1308519D85005003445EA /* ViewChanges.m in Sources */,
 				4C55742719D6CCC300B2B307 /* AppDelegate.m in Sources */,
 				4C55742419D6CCC300B2B307 /* main.m in Sources */,
+				4C6E32C719E569AB006BD032 /* BezierVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

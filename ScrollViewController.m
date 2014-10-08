@@ -21,16 +21,27 @@
     
 //    self.graphWidth.constant = self.view.bounds.size.width;
     self.view.backgroundColor = [UIColor greenColor];
-    [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateWidth) userInfo:nil repeats:YES];
+    [NSTimer scheduledTimerWithTimeInterval:0.8 target:self selector:@selector(scroll) userInfo:nil repeats:YES];
 }
 
 - (void)updateWidth{
-    self.graphWidth.constant += self.view.bounds.size.width;
+    self.graphWidth.constant += self.view.bounds.size.width/4;
     NSLog(@"%f", self.view.bounds.size.width);
-//    [UIView animateWithDuration:1 delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
+    [UIView animateWithDuration:3 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
         self.scrollView.contentOffset = CGPointMake(self.graphWidth.constant, 0);
 //    [self.scrollView setContentOffset:CGPointMake(self.graphWidth.constant, 0) animated:YES];
-//    } completion:nil];
+    } completion:nil];
+}
+
+- (void)scroll{
+    CGFloat currentOffset = self.scrollView.contentOffset.x;
+    
+    CGFloat newOffset = currentOffset + 320;
+    
+    [UIScrollView beginAnimations:nil context:NULL];
+    [UIScrollView setAnimationDuration:2.1];
+    [self.scrollView setContentOffset:CGPointMake(newOffset,0.0)];
+    [UIScrollView commitAnimations];
 }
 
 - (void)didReceiveMemoryWarning {

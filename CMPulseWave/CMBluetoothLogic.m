@@ -17,7 +17,6 @@
 
 @property (nonatomic, strong) CBCentralManager *centralManager;
 @property (nonatomic, strong) NSMutableArray *heartRatePeripherals;
-@property (nonatomic) id<CMRetrievingData> delegate;
 @end
 
 @implementation CMBluetoothLogic
@@ -101,9 +100,7 @@
 - (void)peripheral:(CBPeripheral *)peripheral didUpdateValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error{
     
     NSLog(@"didUpdateValueForCharacteristic");
-    
-    self.delegate = [ChartViewController sharedInstance];
-    
+        
     uint8_t* val = (uint8_t *)[characteristic.value bytes];
     
     for (int i = 0; i < [characteristic.value length] - 1; i++) {
