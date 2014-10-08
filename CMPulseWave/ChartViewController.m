@@ -16,36 +16,45 @@
 @property (nonatomic) NSMutableArray *xPoints;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *graphWidth;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
-
 @end
 
 @implementation ChartViewController
 
--(void) updateData{
-    if ([self.xPoints.lastObject floatValue] <= 50) {
+-(void) updateDataWithPoints:(NSArray *)points{
+    for (int i = 0; i < [points count]; i++) {
+        
+        [self.xPoints addObject:@([self.xPoints.lastObject floatValue]+1)];
+        [self.yPoints addObject:points[i]];
     
-    [self.yPoints addObject:@([self.yPoints.lastObject floatValue]+0.5)];
-    [self.xPoints addObject:@([self.xPoints.lastObject floatValue]+3)];
-//    self.graphWidth.constant += self.view.bounds.size.width/4;
-    [self.graph reloadData];
+        if ([self.xPoints.lastObject floatValue] <= 50) {
+    
+            [self.graph reloadData];
         
-    } else {
+        } else {
         
-        [self.yPoints addObject:@([self.yPoints.lastObject floatValue]-0.5)];
-        [self.xPoints addObject:@([self.xPoints.lastObject floatValue]+3)];
-        
-        [self changePlotRange];
-        [self.graph reloadData];
-
-        
-        
+            [self changePlotRange];
+            [self.graph reloadData];
+        }
     }
-    
-//    [UIView animateWithDuration:3 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
-//        self.scrollView.contentOffset = CGPointMake(self.graphWidth.constant, 0);
-//    } completion:nil];
+//    [self.graph reloadData];
 
     
+}
+
+
+-(NSMutableArray *)newYPoints{
+    
+    NSMutableArray *tra = [[NSMutableArray alloc]initWithCapacity:20];
+    
+    for (int i = 0; i<20; i++) {
+        int a = arc4random_uniform(10);
+        [tra addObject:@(a)];
+//        [self.xPoints addObject:@(x+i)];
+//        [self.yPoints addObject:@(a)];
+    }
+    [self updateDataWithPoints:tra];
+    
+    return tra;
 }
 
 -(void)changePlotRange
@@ -54,16 +63,15 @@
     CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *)self.graph.defaultPlotSpace;
     
     CPTPlotRange *tempXRange = plotSpace.xRange;
-    CPTPlotRange *tempYRange = plotSpace.yRange;
+//    CPTPlotRange *tempYRange = plotSpace.yRange;
 
-    float newLoc = CPTDecimalFloatValue(tempXRange.location) + 3;
-    float newYLoc = CPTDecimalFloatValue(tempYRange.location) + 0.5;
+    float newXLoc = CPTDecimalFloatValue(tempXRange.location) + 1;
+//    float newYLoc = CPTDecimalFloatValue(tempYRange.location) + 0.5;
 
-    plotSpace.xRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(newLoc) length:CPTDecimalFromFloat(50)];
+    plotSpace.xRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(newXLoc) length:CPTDecimalFromFloat(50)];
     
-    plotSpace.yRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(newYLoc) length:CPTDecimalFromFloat(10)];
+//    plotSpace.yRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(newYLoc) length:CPTDecimalFromFloat(10)];
 }
-
 
 - (void)updateWidth{
     self.graphWidth.constant += self.view.bounds.size.width/4;
@@ -76,7 +84,7 @@
     [super viewDidAppear:animated];
     [self initPlot];
 
-    [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(updateData) userInfo:nil repeats:YES];
+    [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(newYPoints) userInfo:nil repeats:YES];
     
 }
 -(void)initPlot {
@@ -128,15 +136,6 @@
     
     plotSpace.yRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromDouble(0) length:CPTDecimalFromDouble(10)];
     plotSpace.xRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromDouble(0) length:CPTDecimalFromDouble(50)];
-//    CPTMutablePlotRange *xRange = [plotSpace.xRange mutableCopy];
-//    [xRange expandRangeByFactor:CPTDecimalFromCGFloat(1.1f)];
-//    plotSpace.xRange = xRange;
-//
-    
-//    CPTMutablePlotRange *yRange = [plotSpace.yRange mutableCopy];
-//    [yRange expandRangeByFactor:CPTDecimalFromCGFloat(1.1f)];
-//    plotSpace.yRange = yRange;
-//    plotSpace.globalYRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromInt(0) length: CPTDecimalFromInt(256.0)];
     
     
     // 4 - Create styles and symbols
@@ -150,7 +149,7 @@
 #pragma mark - Points
 -(NSMutableArray *) xPoints{
     if (!_xPoints) {
-        _xPoints =  [[NSMutableArray alloc] initWithObjects:@(0), nil];
+        _xPoints =  [[NSMutableArray alloc] initWithObjects:nil];
     }
     return _xPoints;
 }
