@@ -7,9 +7,21 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreBluetooth/CoreBluetooth.h>
 
-@interface CMBluetoothLogic : NSObject
 
-@property (nonatomic, strong) NSString   *connected;
+@protocol CMResponseToDataChange <NSObject>
+
+-(void)updatePointsBuffer:(uint8_t *)points;
+//-(void)drawPoints;
+
+@end
+
+@interface CMBluetoothLogic : NSObject <CBCentralManagerDelegate, CBPeripheralDelegate>
+
+@property (nonatomic, strong) NSString *connected;
+@property (nonatomic, strong) CBCentralManager *centralManager;
+@property (nonatomic, strong) NSMutableArray *heartRatePeripherals;
+@property (nonatomic) id<CMResponseToDataChange> delegate;
 
 @end

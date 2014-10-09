@@ -7,20 +7,24 @@
 //
 
 #import "CMBluetoothLogic.h"
-#import <CoreBluetooth/CoreBluetooth.h>
 #import "ChartViewController.h"
 
 #define SERVICE_UUID [CBUUID UUIDWithString:@"0000aa30-0000-1000-8000-00805f9b34fb"]
 #define CHARACTERISTIC_UUID [CBUUID UUIDWithString:@"0000aa31-0000-1000-8000-00805f9b34fb"]
 
-@interface CMBluetoothLogic () <CBCentralManagerDelegate, CBPeripheralDelegate>
+@interface CMBluetoothLogic () 
 
-@property (nonatomic, strong) CBCentralManager *centralManager;
-@property (nonatomic, strong) NSMutableArray *heartRatePeripherals;
+
 @end
 
 @implementation CMBluetoothLogic
 
+-(instancetype)init{
+    self = [super init];
+    [self centralManager];
+    [self heartRatePeripherals];
+    return self;
+}
 -(CBCentralManager *) centralManager{
     if(!_centralManager){
         _centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
@@ -102,6 +106,9 @@
     NSLog(@"didUpdateValueForCharacteristic");
         
     uint8_t* val = (uint8_t *)[characteristic.value bytes];
+    
+    [self.delegate updatePointsBuffer:val];
+//    [self.delegate drawPoints];
     
     for (int i = 0; i < [characteristic.value length] - 1; i++) {
         NSLog(@"%d", val[i]);

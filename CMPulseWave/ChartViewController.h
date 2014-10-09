@@ -10,7 +10,8 @@
 #import "CorePlot-CocoaTouch.h"
 #import "CMBluetoothLogic.h"
 
-@interface ChartViewController : UIViewController <CPTPlotDataSource>
+
+@interface ChartViewController : UIViewController <CPTPlotDataSource, CMResponseToDataChange>
 
 @property (nonatomic, weak) IBOutlet CPTGraphHostingView *hostView;
 

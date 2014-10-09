@@ -7,6 +7,7 @@
 //
 
 #import "ChartViewController.h"
+#import <CoreBluetooth/CoreBluetooth.h>
 
 @interface ChartViewController()
 
@@ -14,11 +15,41 @@
 @property (nonatomic) NSMutableArray *yDataForGraph;
 @property (nonatomic) NSMutableArray *yPoints;
 @property (nonatomic) NSMutableArray *xPoints;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *graphWidth;
-@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+//@property (weak, nonatomic) IBOutlet NSLayoutConstraint *graphWidth;
+@property (weak, nonatomic) IBOutlet UIView *hostingView;
+@property (nonatomic) NSMutableArray *bufferWithPoints;
+@property (nonatomic) CMBluetoothLogic *bluetooth;
+
+@property (nonatomic) int x;
+
+@property (nonatomic, strong) CPTTheme *selectedTheme;
+
+@property (nonatomic) CPTMutableLineStyle *styleForLine;
+
 @end
 
 @implementation ChartViewController
+
+
+-(void) viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    [self initPlot];
+    
+    self.bluetooth = [[CMBluetoothLogic alloc]init];
+    self.bluetooth.delegate = self;
+    
+//    [NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(draw) userInfo:nil repeats:YES];
+
+//        [NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(newYPoints) userInfo:nil repeats:YES];
+    
+}
+
+-(int)x{
+    if(!_x){
+        _x = 400;
+    }
+    return _x;
+}
 
 -(void) updateDataWithPoints:(NSArray *)points{
     for (int i = 0; i < [points count]; i++) {
@@ -26,21 +57,16 @@
         [self.xPoints addObject:@([self.xPoints.lastObject floatValue]+1)];
         [self.yPoints addObject:points[i]];
     
-        if ([self.xPoints.lastObject floatValue] <= 50) {
-    
-            [self.graph reloadData];
-        
-        } else {
-        
+        if ([self.xPoints.lastObject integerValue] > self.x) {
             [self changePlotRange];
-            [self.graph reloadData];
         }
+        [self.graph reloadData];
+
     }
 //    [self.graph reloadData];
 
     
 }
-
 
 -(NSMutableArray *)newYPoints{
     
@@ -57,36 +83,14 @@
     return tra;
 }
 
--(void)changePlotRange
-{
-    // Setup plot space
-    CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *)self.graph.defaultPlotSpace;
-    
-    CPTPlotRange *tempXRange = plotSpace.xRange;
-//    CPTPlotRange *tempYRange = plotSpace.yRange;
+//- (void)updateWidth{
+//    self.graphWidth.constant += self.view.bounds.size.width/10;
+//    //    [UIView animateWithDuration:3 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
+//    self.hostingView.contentOffset = CGPointMake(self.graphWidth.constant, 0);
+//    //    } completion:nil];
+//}
 
-    float newXLoc = CPTDecimalFloatValue(tempXRange.location) + 1;
-//    float newYLoc = CPTDecimalFloatValue(tempYRange.location) + 0.5;
-
-    plotSpace.xRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(newXLoc) length:CPTDecimalFromFloat(50)];
-    
-//    plotSpace.yRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(newYLoc) length:CPTDecimalFromFloat(10)];
-}
-
-- (void)updateWidth{
-    self.graphWidth.constant += self.view.bounds.size.width/4;
-//    [UIView animateWithDuration:3 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
-        self.scrollView.contentOffset = CGPointMake(self.graphWidth.constant, 0);
-//    } completion:nil];
-}
-
--(void) viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
-    [self initPlot];
-
-    [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(newYPoints) userInfo:nil repeats:YES];
-    
-}
+#pragma mark - Plot methods
 -(void)initPlot {
 //    [self configureHost];
     [self configureGraph];
@@ -112,10 +116,21 @@
     [self.graph applyTheme:[CPTTheme themeNamed:kCPTPlainWhiteTheme]];
     self.hostView.hostedGraph = self.graph;
     
+    
     // 2 - Set graph title
     // 3 - Create and set text style
+    
     // 4 - Set padding for plot area
+    self.graph.paddingBottom = 0;
+    self.graph.paddingLeft = 0;
+    self.graph.paddingRight =0;
+    self.graph.paddingTop = 0;
+    self.graph.axisSet = nil;
     // 5 - Enable user interactions for plot space
+    [self.graph.defaultPlotSpace setAllowsUserInteraction:NO];
+    
+//    self.selectedTheme = [CPTTheme themeNamed:kCPTSlateTheme];
+//    [self.graph applyTheme:self.selectedTheme];
 
 }
 
@@ -130,20 +145,54 @@
     CPTColor *color = [CPTColor blueColor];
     [graph addPlot:plot toPlotSpace:plotSpace];
     
-    // 3 - Set up plot space
     [plotSpace scaleToFitPlots:[NSArray arrayWithObject:plot]];
-//
-    
-    plotSpace.yRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromDouble(0) length:CPTDecimalFromDouble(10)];
-    plotSpace.xRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromDouble(0) length:CPTDecimalFromDouble(50)];
+
+    plotSpace.yRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromDouble(0) length:CPTDecimalFromDouble(255)];
+    plotSpace.xRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromDouble(0) length:CPTDecimalFromDouble(self.x)];
     
     
     // 4 - Create styles and symbols
 //    plot.dataLineStyle = nil;
+    
     CPTPlotSymbol *symbol = [CPTPlotSymbol ellipsePlotSymbol];
     symbol.fill = [CPTFill fillWithColor:color];
-    symbol.size = CGSizeMake(6.0f, 6.0f);
+    symbol.size = CGSizeMake(2.0f, 2.0f);
     plot.plotSymbol = symbol;
+    
+    CPTMutableLineStyle *lineStyle = [CPTMutableLineStyle lineStyle];
+    lineStyle.lineColor = [CPTColor yellowColor];
+    lineStyle.lineWidth = 2.0f;
+    self.styleForLine = lineStyle;
+    
+//
+
+
+}
+
+-(void)changePlotRange
+{
+    CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *)self.graph.defaultPlotSpace;
+    
+    CPTPlotRange *tempXRange = plotSpace.xRange;
+    float newXLoc = CPTDecimalFloatValue(tempXRange.location) + 20;
+    
+    plotSpace.xRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(newXLoc) length:CPTDecimalFromFloat(self.x)];
+    
+//    float newXLoc = CPTDecimalFloatValue(tempXRange.location) + 1;
+//    
+//    plotSpace.xRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(newXLoc) length:CPTDecimalFromFloat(200)];
+}
+-(void) configureAxis{
+    
+    CPTXYAxisSet *axisSet = (CPTXYAxisSet *)[self.graph axisSet];
+    CPTXYAxis *xAxis = [axisSet xAxis];
+    CPTXYAxis *yAxis = [axisSet yAxis];
+    
+    [xAxis setMinorTickLineStyle:nil];
+    [xAxis setAxisLineStyle:nil];
+   
+
+    
 }
 
 #pragma mark - Points
@@ -161,7 +210,14 @@
     return _yPoints;
 }
 
-#pragma mark - CPTPlotDataSource methods
+-(NSMutableArray *)bufferWithPoints{
+    if(!_bufferWithPoints){
+        _bufferWithPoints = [[NSMutableArray alloc] initWithObjects:nil];
+    }
+    return _bufferWithPoints;
+}
+
+#pragma mark - CPTPlotDataSource protocol methods
 -(NSUInteger)numberOfRecordsForPlot:(CPTPlot *)plot {
     return [self.xPoints count];
 }
@@ -186,6 +242,47 @@
     }
 
     return [NSDecimalNumber zero];
+}
+
+#pragma mark - CMResponseToDataChange protocol functions
+
+-(void)updatePointsBuffer:(uint8_t *)points{
+    
+    //draws 20 dots at once
+    for (int i = 0 ; i < 20; i++) {
+        [self.yPoints addObject:@(points[i])];
+        [self.xPoints addObject:@([self.xPoints.lastObject integerValue] +1)];
+    }
+    if ([self.xPoints.lastObject integerValue] >=self.x){
+        [self changePlotRange];
+    }
+    [self.graph reloadData];
+}
+
+//-(void)updatePointsBuffer:(uint8_t *)points{
+
+//    //draws one dot at once
+//    for (int i = 0 ; i < 20; i++) {
+//        [self.bufferWithPoints addObject:@(points[i])];
+//    }
+//}
+
+-(void)draw{
+    if (self.bufferWithPoints.count !=0) {
+        
+        long y = [self.bufferWithPoints.firstObject integerValue];
+        [self.bufferWithPoints removeObjectAtIndex:0];
+        
+        [self.yPoints addObject:@(y)];
+        [self.xPoints addObject:@([self.xPoints.lastObject integerValue] +1)];
+        
+        if ([self.xPoints.lastObject integerValue] >=self.x){
+            [self changePlotRange];
+//            [self updateWidth];
+            
+        }
+        [self.graph reloadData];
+    }
 }
 
 @end
