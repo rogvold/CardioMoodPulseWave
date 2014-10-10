@@ -163,21 +163,19 @@
                         <subviews>
                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zwf-R1-f9K" customClass="CPTGraphHostingView">
                                 <rect key="frame" x="0.0" y="40" width="600" height="560"/>
-                                <color key="backgroundColor" red="1" green="0.80384948432725212" blue="0.90258916200422901" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.58027664879999996" green="0.1117939426" blue="0.63661910079999995" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.45882352941176469" green="0.30980392156862746" blue="0.50588235294117645" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="tqV-O0-kCx" firstAttribute="top" secondItem="Zwf-R1-f9K" secondAttribute="bottom" constant="40" id="O4a-7I-Eo6"/>
-                            <constraint firstItem="Zwf-R1-f9K" firstAttribute="top" secondItem="mQn-GS-Nrk" secondAttribute="topMargin" constant="40" id="V3y-Dz-X8d"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Zwf-R1-f9K" secondAttribute="trailing" constant="40" id="xOf-CE-uoz"/>
-                            <constraint firstItem="Zwf-R1-f9K" firstAttribute="leading" secondItem="mQn-GS-Nrk" secondAttribute="leadingMargin" constant="40" id="yob-jy-Rl2"/>
+                            <constraint firstItem="Zwf-R1-f9K" firstAttribute="leading" secondItem="mQn-GS-Nrk" secondAttribute="leadingMargin" constant="-16" id="7Wu-aZ-LZ1"/>
+                            <constraint firstItem="Zwf-R1-f9K" firstAttribute="top" secondItem="D3o-1Z-xNZ" secondAttribute="bottom" constant="40" id="Eyj-ON-y5N"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Zwf-R1-f9K" secondAttribute="trailing" constant="-16" id="Wqi-3q-QYj"/>
+                            <constraint firstItem="tqV-O0-kCx" firstAttribute="top" secondItem="Zwf-R1-f9K" secondAttribute="bottom" id="eMn-Nh-voL"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="OXf-fd-mDZ"/>
                     <connections>
                         <outlet property="hostView" destination="Zwf-R1-f9K" id="9Pf-Gz-n9h"/>
-                        <outlet property="hostingView" destination="Zwf-R1-f9K" id="Qjc-h6-S2X"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Obq-aK-aCD" userLabel="First Responder" sceneMemberID="firstResponder"/>
